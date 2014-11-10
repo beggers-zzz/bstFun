@@ -30,6 +30,29 @@ public abstract class AbstractBinaryTree<T implements Comparable<T>> {
         }
     }
 
+    /*
+     * Get the passed data item from the tree. If it's not in the tree, returns
+     * null.
+     */
+    public T get(T data) {
+        return get(data, root);
+    }
+
+    // Recursive helper for get().
+    private T get(T data, TreeNode r) {
+        if (r == null) {
+            return null;
+        } else if (r.data.equals(data)) {
+            return r.data;
+        } else if (r.data.compareTo(data) > 0) {
+            return get(data, r.left);
+        } else if (r.data.compareTo(data) < 0) {
+            return get(data, r.right);
+        } else {
+            // Should never be reached, we're just being safe
+            throw new RunTimeException("Poor logic on programmer's part");
+        }
+    }
 
     /*
      * Get the number of items in the AbstractBinaryTree.
@@ -83,6 +106,9 @@ public abstract class AbstractBinaryTree<T implements Comparable<T>> {
             return 1 + max(height(r.right), height(r.left));
         }
     }
+
+
+    // Abstract methods
 
     /*
      * Insert a data item into the tree.
