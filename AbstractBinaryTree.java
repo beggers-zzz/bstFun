@@ -30,6 +30,42 @@ public abstract class AbstractBinaryTree<T implements Comparable<T>> {
         }
     }
 
+
+    /*
+     * Get the number of items in the AbstractBinaryTree.
+     */
+    public int size() {
+        return size;
+    }
+
+    /*
+     * Get the number of "node types" of the tree-the first array slot will
+     * contain the number of nodes with 0 children, the second will contain
+     * the number of nodes with 1 child, and the 3rd will contain the number
+     * of nodes with 2 children.
+     */
+    public int[] getBranchingNumbers() {
+        int[] nums = new int[3];
+        getBranchingNumbers(nums, root);
+        return nums;
+    }
+
+    // Private helper for getBranchingNumbers
+    private void getBranchingNumbers(int[] nums, TreeNode r) {
+        if (r != null) {
+            if (r.left == null && r.right == null) {
+                nums[0]++;
+            } else if (r.left != null && r.right != null) {
+                nums[2]++;
+            } else {
+                nums[1]++;
+            }
+
+            getBranchingNumbers(nums, r.left);
+            getBranchingNumbers(nums, r.right);
+        }
+    }
+
     /*
      * Returns the height of the treap. This is defined to be the maximum
      * number of hops necessary to get from the root to a leaf node.
@@ -52,7 +88,6 @@ public abstract class AbstractBinaryTree<T implements Comparable<T>> {
      * Insert a data item into the tree.
      */
     public abstract insert(T data);
-
 
 
     /*
