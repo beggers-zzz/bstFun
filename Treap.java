@@ -8,10 +8,31 @@ import java.util.Random;
 
 public class Treap<T implements Comparable<T>> {
     private TreapNode root;
+    private int size;
 
-    public Treap<T>() {
-
+    /*
+     * Construct an empty Treap.
+     */
+    public Treap() {
+        // nothing to do
     }
+
+    /*
+     * Construct a Treap using the passed Collection. If the passed Collection
+     * is null, throws an IllegalArgumentException.
+     */
+    public Treap(Collection<T implements Comparable<T> init) {
+        if (init == null) {
+            throw new IllegalArgumentException();
+        }
+
+        for (T item : init) {
+            insert(item);
+            size++;
+        }
+    }
+
+    
 
     /*
      * Returns the height of the treap. This is defined to be the maximum
@@ -55,6 +76,5 @@ public class Treap<T implements Comparable<T>> {
             this.left = left;
             this.right = right;
         }
-
     }
 }
