@@ -4,7 +4,10 @@
  * except the insert() method.
  */
 
-public abstract class AbstractBinaryTree<T implements Comparable<T>> {
+import java.util.*;
+import java.math.*;
+
+public abstract class AbstractBinaryTree<T extends Comparable<T>> {
     private TreeNode root;
     private int size;
 
@@ -19,7 +22,7 @@ public abstract class AbstractBinaryTree<T implements Comparable<T>> {
      * Construct a AbstractBinaryTree using the passed Collection. If the passed Collection
      * is null, throws an IllegalArgumentException.
      */
-    public AbstractBinaryTree(Collection<T implements Comparable<T> init) {
+    public AbstractBinaryTree(Collection<T> init) {
         if (init == null) {
             throw new IllegalArgumentException();
         }
@@ -50,7 +53,7 @@ public abstract class AbstractBinaryTree<T implements Comparable<T>> {
             return get(data, r.right);
         } else {
             // Should never be reached, we're just being safe
-            throw new RunTimeException("Poor logic on programmer's part");
+            throw new RuntimeException("Poor logic on programmer's part");
         }
     }
 
@@ -103,7 +106,7 @@ public abstract class AbstractBinaryTree<T implements Comparable<T>> {
         if (r == null || (r.right == null && r.left == null)) {
             return 0;
         } else {
-            return 1 + max(height(r.right), height(r.left));
+            return 1 + Math.max(height(r.right), height(r.left));
         }
     }
 
@@ -113,7 +116,7 @@ public abstract class AbstractBinaryTree<T implements Comparable<T>> {
     /*
      * Insert a data item into the tree.
      */
-    public abstract insert(T data);
+    public abstract void insert(T data);
 
 
     /*
