@@ -1,27 +1,25 @@
 /* Ben Eggers
  *
- * This class is a treap--a type of randomized binary search tree. For more
- * information, see http://en.wikipedia.org/wiki/Treap.
+ * This class represents an abstract binary tree. Everything has been implemented
+ * except the insert() method.
  */
 
-import java.util.Random;
-
-public class Treap<T implements Comparable<T>> {
-    private TreapNode root;
+public abstract class AbstractBinaryTree<T implements Comparable<T>> {
+    private TreeNode root;
     private int size;
 
     /*
-     * Construct an empty Treap.
+     * Construct an empty AbstractBinaryTree.
      */
-    public Treap() {
+    public AbstractBinaryTree() {
         // nothing to do
     }
 
     /*
-     * Construct a Treap using the passed Collection. If the passed Collection
+     * Construct a AbstractBinaryTree using the passed Collection. If the passed Collection
      * is null, throws an IllegalArgumentException.
      */
-    public Treap(Collection<T implements Comparable<T> init) {
+    public AbstractBinaryTree(Collection<T implements Comparable<T> init) {
         if (init == null) {
             throw new IllegalArgumentException();
         }
@@ -31,8 +29,6 @@ public class Treap<T implements Comparable<T>> {
             size++;
         }
     }
-
-    
 
     /*
      * Returns the height of the treap. This is defined to be the maximum
@@ -44,7 +40,7 @@ public class Treap<T implements Comparable<T>> {
 
     // Horribly inefficient, but oh well! That's what you get for writing
     // pedegogic code
-    private int height(TreapNode r) {
+    private int height(TreeNode r) {
         if (r == null || (r.right == null && r.left == null)) {
             return 0;
         } else {
@@ -53,25 +49,32 @@ public class Treap<T implements Comparable<T>> {
     }
 
     /*
-     * Node class for the Treap. Pretty much a basic binary search tree node.
+     * Insert a data item into the tree.
      */
-    public class TreapNode {
+    public abstract insert(T data);
+
+
+
+    /*
+     * Node class for the AbstractBinaryTree. Pretty much a basic binary search tree node.
+     */
+    public class TreeNode {
         T data;
-        TreapNode left;
-        TreapNode right;
+        TreeNode left;
+        TreeNode right;
 
         /*
-         * Constructor for the TreapNode that takes a data item as a parameter.
+         * Constructor for the TreeNode that takes a data item as a parameter.
          */
-        public TreapNode(T data) {
+        public TreeNode(T data) {
             this(data, null, null);
         }
 
         /*
-         * Constructor for the TreapNode that takes a data item, a left
-         * TreapNode, and a right TreapNode as parameters.
+         * Constructor for the TreeNode that takes a data item, a left
+         * TreeNode, and a right TreeNode as parameters.
          */
-        public TreapNode(T data, TreapNode left, TreapNode right) {
+        public TreeNode(T data, TreeNode left, TreeNode right) {
             this.data = data;
             this.left = left;
             this.right = right;
