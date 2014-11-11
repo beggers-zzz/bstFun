@@ -118,6 +118,11 @@ public abstract class AbstractBinaryTree<T extends Comparable<T>> {
      */
     public abstract void insert(T data);
 
+    /*
+     * Remove a data item from the tree.
+     */
+    public abstract void remove(T data);
+
 
     /*
      * Node class for the AbstractBinaryTree. Pretty much a basic binary search tree node.
