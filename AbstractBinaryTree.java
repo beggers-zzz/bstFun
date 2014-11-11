@@ -7,8 +7,8 @@ import java.util.*;
 import java.math.*;
 
 public abstract class AbstractBinaryTree<T extends Comparable<T>> {
-    private TreeNode root;
-    private int size;
+    protected TreeNode root;
+    protected int size;
 
     /*
      * Construct an empty AbstractBinaryTree.
@@ -50,10 +50,10 @@ public abstract class AbstractBinaryTree<T extends Comparable<T>> {
             return get(data, r.left);
         } else if (r.data.compareTo(data) < 0) {
             return get(data, r.right);
-        } else {
-            // Should never be reached, we're just being safe
-            throw new RuntimeException("Poor logic on programmer's part");
         }
+
+        // Should never be reached, we're just being safe
+        throw new RuntimeException("Poor logic on programmer's part");
     }
 
     /*
@@ -101,7 +101,7 @@ public abstract class AbstractBinaryTree<T extends Comparable<T>> {
 
     // Horribly inefficient, but oh well! That's what you get for writing
     // pedegogic code
-    private int height(TreeNode r) {
+    protected int height(TreeNode r) {
         if (r == null || (r.right == null && r.left == null)) {
             return 0;
         } else {
@@ -118,7 +118,8 @@ public abstract class AbstractBinaryTree<T extends Comparable<T>> {
     public abstract void insert(T data);
 
     /*
-     * Remove a data item from the tree.
+     * Remove a data item from the tree. Throws an IllegalArgumentException
+     * if the element is not in the tree.
      */
     public abstract void remove(T data);
 
