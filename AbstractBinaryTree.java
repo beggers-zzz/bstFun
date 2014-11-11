@@ -1,7 +1,6 @@
 /* Ben Eggers
  *
- * This class represents an abstract binary tree. Everything has been implemented
- * except the insert() method.
+ * This class represents an abstract binary tree.
  */
 
 import java.util.*;
