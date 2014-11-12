@@ -2,6 +2,7 @@
  *
  * This class is an actual binary tree. Nothing fancy.
 **/
+package bstFun;
 
 public class BST<T extends Comparable<T>> extends AbstractBST<T> {
 
