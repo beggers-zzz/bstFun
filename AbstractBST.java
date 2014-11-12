@@ -113,7 +113,18 @@ public abstract class AbstractBST<T extends Comparable<T>> {
      * Get a List representing the in-order traversal of the tree.
      */
     public List<T> inOrderTraversal() {
+        List<T> res = new ArrayList<T>();
+        inOrderTraversal(root, res);
+        return res;
+    }
 
+    // Private helper for inOrderTraversal
+    private void inOrderTraversal(TreeNode r, List<T> res) {
+        if (r != null) {
+            inOrderTraversal(r.left, res);
+            res.add(r.data);
+            inOrderTraversal(r.left, res);
+        }
     }
 
     // Abstract methods

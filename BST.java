@@ -3,7 +3,7 @@
  * This class is an actual binary tree. Nothing fancy.
  */
 
-public class BinaryTree<T extends Comparable<T>> extends AbstractBinaryTree<T> {
+public class BST<T extends Comparable<T>> extends AbstractBST<T> {
 
     public void remove(T data) {
         root = remove(data, root);
