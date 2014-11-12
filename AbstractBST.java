@@ -2,7 +2,6 @@
  *
  * This class represents an abstract binary tree.
 **/
-package bstFun;
 
 import java.util.*;
 import java.math.*;
