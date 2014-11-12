@@ -6,22 +6,22 @@
 import java.util.*;
 import java.math.*;
 
-public abstract class AbstractBinaryTree<T extends Comparable<T>> {
+public abstract class AbstractBST<T extends Comparable<T>> {
     protected TreeNode root;
     protected int size;
 
     /*
-     * Construct an empty AbstractBinaryTree.
+     * Construct an empty AbstractBST.
      */
-    public AbstractBinaryTree() {
+    public AbstractBST() {
         // nothing to do
     }
 
     /*
-     * Construct a AbstractBinaryTree using the passed Collection. If the passed Collection
+     * Construct a AbstractBST using the passed Collection. If the passed Collection
      * is null, throws an IllegalArgumentException.
      */
-    public AbstractBinaryTree(Collection<T> init) {
+    public AbstractBST(Collection<T> init) {
         if (init == null) {
             throw new IllegalArgumentException();
         }
@@ -57,7 +57,7 @@ public abstract class AbstractBinaryTree<T extends Comparable<T>> {
     }
 
     /*
-     * Get the number of items in the AbstractBinaryTree.
+     * Get the number of items in the AbstractBST.
      */
     public int size() {
         return size;
@@ -92,7 +92,7 @@ public abstract class AbstractBinaryTree<T extends Comparable<T>> {
     }
 
     /*
-     * Returns the height of the treap. This is defined to be the maximum
+     * Returns the height of the tree. This is defined to be the maximum
      * number of hops necessary to get from the root to a leaf node.
      */
     public int height() {
@@ -109,6 +109,12 @@ public abstract class AbstractBinaryTree<T extends Comparable<T>> {
         }
     }
 
+    /*
+     * Get a List representing the in-order traversal of the tree.
+     */
+    public List<T> inOrderTraversal() {
+
+    }
 
     // Abstract methods
 
@@ -125,7 +131,7 @@ public abstract class AbstractBinaryTree<T extends Comparable<T>> {
 
 
     /*
-     * Node class for the AbstractBinaryTree. Pretty much a basic binary search tree node.
+     * Node class for the AbstractBST. Pretty much a basic binary search tree node.
      */
     public class TreeNode {
         T data;
