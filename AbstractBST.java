@@ -1,7 +1,7 @@
 /* Ben Eggers
  *
  * This class represents an abstract binary tree.
- */
+**/
 
 import java.util.*;
 import java.math.*;

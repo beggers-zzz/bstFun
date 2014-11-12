@@ -1,7 +1,7 @@
 /* Ben Eggers
  *
  * This class is an actual binary tree. Nothing fancy.
- */
+**/
 
 public class BST<T extends Comparable<T>> extends AbstractBST<T> {
 
