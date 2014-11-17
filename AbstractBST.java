@@ -28,7 +28,6 @@ public abstract class AbstractBST<T extends Comparable<T>> {
 
         for (T item : init) {
             insert(item);
-            size++;
         }
     }
 

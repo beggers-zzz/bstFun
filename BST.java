@@ -16,6 +16,7 @@ public class BST<T extends Comparable<T>> extends AbstractBST<T> {
         }
 
         if (r.data.equals(data)) {
+            size--;
             return null;
         } else if (r.data.compareTo(data) > 0) {
             r.left = remove(data, r.left);
@@ -34,6 +35,7 @@ public class BST<T extends Comparable<T>> extends AbstractBST<T> {
     // Helper for insert()
     private TreeNode insert(T data, TreeNode r) {
         if (r == null) {
+            size++;
             return new TreeNode(data);
         } else if (r.data.compareTo(data) > 0) {
             r.left = insert(data, r.left);
