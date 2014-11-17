@@ -11,7 +11,13 @@ public class RandomizedBST<T extends Comparable<T>> extends AbstractBST<T> {
     }
 
     public void insert(T data) {
-        return;
+        root = insert(data, root);
+    }
+
+    private RandTreeNode insert(T data, RandTreeNode r) {
+        if (r == null) {
+            return new RandTreeNode(data);
+        }
     }
 
     public class RandTreeNode extends TreeNode {
