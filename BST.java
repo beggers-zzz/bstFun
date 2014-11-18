@@ -16,12 +16,19 @@ public class BST<T extends Comparable<T>> extends AbstractBST<T> {
         }
 
         if (r.data.equals(data)) {
-            size--;
             if (r.right == null && r.left == null) {
+                size--;
                 return null;
             } else if (r.right != null && r.left != null) {
-                
+                // Get the smallest element in the right subtree
+                TreeNode newValue = r.right;
+                while (newValue.left != null) {
+                    newValue = newValue.left;
+                }
+                r.data = newValue.data;
+                remove(r.data, r.right);
             } else {
+                size--;
                 return r.left == null ? r.right : r.left;
             }
         } else if (r.data.compareTo(data) > 0) {
