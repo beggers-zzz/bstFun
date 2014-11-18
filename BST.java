@@ -17,7 +17,13 @@ public class BST<T extends Comparable<T>> extends AbstractBST<T> {
 
         if (r.data.equals(data)) {
             size--;
-            return null;
+            if (r.right == null && r.left == null) {
+                return null;
+            } else if (r.right != null && r.left != null) {
+                
+            } else {
+                return r.left == null ? r.right : r.left;
+            }
         } else if (r.data.compareTo(data) > 0) {
             r.left = remove(data, r.left);
         } else if (r.data.compareTo(data) < 0) {
