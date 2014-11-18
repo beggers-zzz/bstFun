@@ -33,11 +33,12 @@ public class BST<T extends Comparable<T>> extends AbstractBST<T> {
             }
         } else if (r.data.compareTo(data) > 0) {
             r.left = remove(data, r.left);
+            return r;
         } else if (r.data.compareTo(data) < 0) {
             r.right = remove(data, r.right);
+            return r;
         }
 
-        // Should never happen
         throw new RuntimeException();
     }
 
@@ -50,13 +51,19 @@ public class BST<T extends Comparable<T>> extends AbstractBST<T> {
         if (r == null) {
             size++;
             return new TreeNode(data);
-        } else if (r.data.compareTo(data) > 0) {
-            r.left = insert(data, r.left);
-        } else if (r.data.compareTo(data) < 0) {
-            r.right = insert(data, r.right);
         }
 
-    // We should never get here
-    throw new RuntimeException();
+        if (r.data.compareTo(data) == 0) {
+            throw new IllegalArgumentException();
+        } else if (r.data.compareTo(data) > 0) {
+            r.left = insert(data, r.left);
+            return r;
+        } else if (r.data.compareTo(data) < 0) {
+            r.right = insert(data, r.right);
+            return r;
+        }
+
+        // We should never get here
+        throw new RuntimeException();
     }
 }
