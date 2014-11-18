@@ -13,5 +13,12 @@ public class BSTMain {
         }
         int h = t.height();
         System.out.println("Height for linked list tree is " + h);
+
+        int[] bf = t.getBranchingNumbers();
+        System.out.println("Branching factors:");
+        System.out.println("\t0: " + bf[0]);
+        System.out.println("\t1: " + bf[1]);
+        System.out.println("\t2: " + bf[2]);
     }
+
 }
