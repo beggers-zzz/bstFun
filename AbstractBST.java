@@ -63,6 +63,13 @@ public abstract class AbstractBST<T extends Comparable<T>> {
     }
 
     /*
+     * Empty the tree, destroying any stored values
+     */
+    public void clear() {
+        root = null;
+    }
+
+    /*
      * Get the number of "node types" of the tree-the first array slot will
      * contain the number of nodes with 0 children, the second will contain
      * the number of nodes with 1 child, and the 3rd will contain the number
