@@ -5,42 +5,57 @@
  * Also (of course) reports some stats.
  */
 
-import java.util.Random;
+import java.util.*;
 
 public class BSTMain {
 
-    public static final int ELEMS = 1024;
+    public static final int ELEMS = 4096;
     public static final int NUM_TESTS = 1024;
     public static Random rand = new Random();
 
     public static void main(String[] args) {
         BST<Integer> bst = new BST<Integer>();
         TreeStats bstStats = new TreeStats();
+        TreeStats treapStats = new TreeStats();
 
         System.out.println("-------------------------------------------------------------");
         System.out.println("Running with " + NUM_TESTS + " trials of " + ELEMS + " inserts each.");
         System.out.println("-------------------------------------------------------------");
         System.out.println();
 
-        for (int i = 0; i < NUM_TESTS; i++) {
-            bstStats.add(sortedInsert(bst));
-        }
+        /*
+         * Sorted Insert
+         */
+
+        // We'll only do one, since it's all deterministic anyway
+        bstStats.add(sortedInsert(bst));
         System.out.println("BST with sorted insert:");
         report(bstStats);
 
+        // Get ready for the next set of trials
         bstStats.clear();
-        bst.clear();
+        treapStats.clear();
+
+        /*
+         * Random Insert
+         */
+
         for (int i = 0; i < NUM_TESTS; i++) {
             bstStats.add(randomInsert(bst));
         }
         System.out.println("BST with random insert:");
         report(bstStats);
 
+        // Get ready for the next set of trials
         bstStats.clear();
-        bst.clear();
-        for (int i = 0; i < NUM_TESTS; i++) {
-            bstStats.add(perfectInsert(bst));
-        }
+        treapStats.clear();
+
+        /*
+         * Perfect Insert (create perfect BST if it's deterministic)
+         */
+
+        // Only one trial on BST, since it's deterministic
+        bstStats.add(perfectInsert(bst));
         System.out.println("BST with perfectly-ordered insert");
         report(bstStats);
     }
@@ -57,8 +72,14 @@ public class BSTMain {
 
     public static TreeStats randomInsert(AbstractBST<Integer> t) {
         t.clear();
-        for (int i = 0; i < ELEMS; i++) {
-            t.insert(rand.nextInt());
+        // Keeps track of what we've put in so we don't do duplicates
+        Set<Integer> s = new HashSet<Integer>();
+        while (s.size() < ELEMS) {
+            int n = rand.nextInt();
+            if (!s.contains(n)) {
+                t.insert(n);
+                s.add(n);
+            }
         }
         TreeStats ts = new TreeStats();
         ts.addTrial(t.height(), t.getBranchingNumbers());
