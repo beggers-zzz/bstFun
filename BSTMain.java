@@ -11,6 +11,7 @@ public class BSTMain {
 
     public static final int ELEMS = 1000;
     public static final int NUM_TESTS = 100;
+    public static Random rand = new Random();
 
     public static void main(String[] args) {
         BST<Integer> bst = new BST<Integer>();
@@ -26,15 +27,15 @@ public class BSTMain {
         }
         System.out.println("BST with sorted insert:");
         report(bstStats);
-/*
+
         bstStats.clear();
         bst.clear();
-        for (int i = 0; < NUM_TESTS; i++) {
+        for (int i = 0; i < NUM_TESTS; i++) {
             bstStats.add(randomInsert(bst));
         }
         System.out.println("BST with random insert:");
         report(bstStats);
-
+/*
         bstStats.clear();
         bst.clear();
         for (int i = 0; i < NUM_TESTS; i++) {
@@ -55,10 +56,25 @@ public class BSTMain {
         return ts;
     }
 
+    public static TreeStats randomInsert(AbstractBST<Integer> t) {
+        t.clear();
+        for (int i = 0; i < ELEMS; i++) {
+            t.insert(rand.nextInt());
+        }
+        TreeStats ts = new TreeStats();
+        ts.addTrial(t.height(), t.getBranchingNumbers());
+        return ts;
+    }
+
+    public static TreeStats perfectInsert(AbstractBST<Integer> t) {
+        t.clear();
+        return new TreeStats();
+    }
+
     public static void report(TreeStats ts) {
         System.out.println("\tAverage height: " + ts.averageHeight);
-        System.out.println("Percentage of ideal height: "
-                         + (Math.abs(Math.log(2, ELMS) - ts.averageHeight) / Math.log(2, ELEMS)) * 100);
+//        System.out.println("Percentage of ideal height: "
+//                         + (Math.abs(Math.log(2, ELMS) - ts.averageHeight) / Math.log(2, ELEMS)) * 100);
 
         System.out.println("\tAverage branching factors:");
         System.out.println("\t\t0: " + ts.averageBranching[0]);
