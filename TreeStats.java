@@ -11,7 +11,7 @@ public class TreeStats {
     }
 
     // Add a trial to the TreeStats object
-    public void addTrail(int height, int[] branching) {
+    public void addTrial(int height, int[] branching) {
         // multiply by trials to get the totals
         averageHeight *= trials;
         for (int i = 0; i < averageBranching.length; i++) {
