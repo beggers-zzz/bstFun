@@ -26,7 +26,7 @@ public class BSTMain {
         }
         System.out.println("BST with sorted insert:");
         report(bstStats);
-
+/*
         bstStats.clear();
         bst.clear();
         for (int i = 0; < NUM_TESTS; i++) {
@@ -42,6 +42,7 @@ public class BSTMain {
         }
         System.out.println("BST with perfectly-ordered insert");
         report(bstStats);
+  */
     }
 
     public static TreeStats sortedInsert(AbstractBST<Integer> t) {
@@ -56,6 +57,8 @@ public class BSTMain {
 
     public static void report(TreeStats ts) {
         System.out.println("\tAverage height: " + ts.averageHeight);
+        System.out.println("Percentage of ideal height: "
+                         + (Math.abs(Math.log(2, ELMS) - ts.averageHeight) / Math.log(2, ELEMS)) * 100);
 
         System.out.println("\tAverage branching factors:");
         System.out.println("\t\t0: " + ts.averageBranching[0]);
