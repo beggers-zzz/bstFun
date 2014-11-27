@@ -24,8 +24,23 @@ public class BSTMain {
         for (int i = 0; i < NUM_TESTS; i++) {
             bstStats.add(sortedInsert(bst));
         }
-
         System.out.println("BST with sorted insert:");
+        report(bstStats);
+
+        bstStats.clear();
+        bst.clear();
+        for (int i = 0; < NUM_TESTS; i++) {
+            bstStats.add(randomInsert(bst));
+        }
+        System.out.println("BST with random insert:");
+        report(bstStats);
+
+        bstStats.clear();
+        bst.clear();
+        for (int i = 0; i < NUM_TESTS; i++) {
+            bstStats.add(perfectInsert(bst));
+        }
+        System.out.println("BST with perfectly-ordered insert");
         report(bstStats);
     }
 
