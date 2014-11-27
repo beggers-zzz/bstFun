@@ -36,6 +36,7 @@ public class BSTMain {
         }
         TreeStats ts = new TreeStats();
         ts.addTrial(t.height(), t.getBranchingNumbers());
+        return ts;
     }
 
     public static void report(TreeStats ts) {
@@ -45,65 +46,5 @@ public class BSTMain {
         System.out.println("\t\t0: " + ts.averageBranching[0]);
         System.out.println("\t\t1: " + ts.averageBranching[1]);
         System.out.println("\t\t2: " + ts.averageBranching[2]);
-    }
-
-    // Used to keep track of average tree stats (height, branching numbers)
-    // across many trials, so we can report averages
-    private class TreeStats {
-        double averageHeight;
-        double[] averageBranching;
-        int trials;
-
-        public TreeStats() {
-            averageBranching = new double[3];
-        }
-
-        // Add a trial to the TreeStats object
-        public void addTrail(int height, int[] branching) {
-            // multiply by trials to get the totals
-            averageHeight *= trials;
-            for (int i = 0; i < averageBranching.length; i++) {
-                averageBranching[i] *= trials;
-            }
-
-            // Add the passed trial to our totals
-            averageHeight += height;
-            for (int i = 0; i < averageBranching.length; i++) {
-                averageBranching[i] += branching[i];
-            }
-
-            // And normalize everything by the new number of trials
-            trials++;
-            averageHeight /= trials;
-            for (int i = 0; i < averageBranching.length; i++) {
-                averageBranching[i] /= trials;
-            }
-        }
-
-        public void clear() {
-            averageHeight = trials = 0;
-            for (int i = 0; i < averageBranching.length; i++) {
-                averageBranching[i] = 0;
-            }
-        }
-
-        public void add(TreeStats other) {
-            this.averageHeight *= this.trials;
-            for (int i = 0; i < this.averageBranching.length; i++) {
-                this.averageBranching[i] *= this.trials;
-            }
-
-            this.averageHeight += other.averageHeight * other.trials;
-            for (int i = 0; i < this.averageBranching.length; i++) {
-                this.averageBranching[i] += other.averageBranching[i] * other.trials;
-            }
-
-            this.trials += other.trials;
-
-            this.averageHeight /= this.trials;
-            for (int i = 0; i < this.averageBranching.length; i++) {
-                this.averageBranching[i] /= this.trials;
-            }
-        }
     }
 }
