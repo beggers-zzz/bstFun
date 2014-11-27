@@ -14,7 +14,7 @@ CLASSES = \
     TreeStats.java \
 	BSTMain.java
 
-default: classes
+all: classes
 
 classes: $(CLASSES:.java=.class)
 
