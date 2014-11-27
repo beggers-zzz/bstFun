@@ -152,6 +152,7 @@ public abstract class AbstractBST<T extends Comparable<T>> {
      */
     public class TreeNode {
         T data;
+        int weight;
         TreeNode left;
         TreeNode right;
 
