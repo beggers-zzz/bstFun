@@ -9,12 +9,12 @@ import java.util.*;
 
 public class BSTMain {
 
-    public static final int ELEMS = 4096;
+    public static final int ELEMS = 1024;
     public static final int NUM_TESTS = 1024;
     public static Random rand = new Random();
 
     public static void main(String[] args) {
-        BST<Integer> bst = new BST<Integer>();
+        AbstractBST<Integer> bst = new BST<Integer>();
         TreeStats bstStats = new TreeStats();
         TreeStats treapStats = new TreeStats();
 
@@ -88,7 +88,7 @@ public class BSTMain {
 
     public static TreeStats perfectInsert(AbstractBST<Integer> t) {
         t.clear();
-        perfectInsert(t, 0, ELEMS);
+        perfectInsert(t, 0, ELEMS - 2);
         TreeStats ts = new TreeStats();
         ts.addTrial(t.height(), t.getBranchingNumbers());
         return ts;
