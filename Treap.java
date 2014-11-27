@@ -1,12 +1,11 @@
 /* Ben Eggers
  *
- * Randomized BST implementation.
+ * Treap BST implementation.
  */
 
 import java.util.*;
 
 public class Treap<T extends Comparable<T>> extends AbstractBST<T> {
-    protected TreapNode root;
     protected Random rand;
 
     public Treap() {
@@ -27,23 +26,10 @@ public class Treap<T extends Comparable<T>> extends AbstractBST<T> {
         root = insert(data, root);
     }
 
-    private TreapNode insert(T data, TreapNode r) {
+    private TreeNode insert(T data, TreeNode r) {
         if (r == null) {
-            return new TreapNode(data);
+            return new TreeNode(data);
         }
         return null;
-    }
-
-    public class TreapNode extends TreeNode {
-        int height;
-
-        public TreapNode(T data) {
-            this(data, null, null);
-        }
-
-        public TreapNode(T data, TreapNode left, TreapNode right) {
-            super(data, left, right);
-            this.height = Math.max(left.height, right.height) + 1;
-        }
     }
 }
