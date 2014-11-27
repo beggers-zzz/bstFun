@@ -1,7 +1,8 @@
 /* Ben Eggers
  *
- * This class' main method creates a BST, RandomizedBST, and Treap, and does
+ * This class' main method creates a BST and Treap, and does
  * some inserts/removals on them to test their effectiveness.
+ * Also (of course) reports some stats.
  */
 
 import java.util.Random;
@@ -13,6 +14,7 @@ public class BSTMain {
 
     public static void main(String[] args) {
         BST<Integer> bst = new BST<Integer>();
+        TreeStats bstStats = new TreeStats();
 
         System.out.println("-----------------------------------");
         System.out.println("Running with " + ELEMS + " inserts.");
@@ -20,18 +22,20 @@ public class BSTMain {
         System.out.println();
 
         for (int i = 0; i < NUM_TESTS; i++) {
-            sortedInsert(bst);
+            bstStats.add(sortedInsert(bst));
         }
 
         System.out.println("BST with sorted insert:");
-        report(bst);
+        report(bstStats);
     }
 
-    public static void sortedInsert(AbstractBST<Integer> t) {
+    public static TreeStats sortedInsert(AbstractBST<Integer> t) {
         t.clear();
         for (int i = 0; i < ELEMS; i++) {
             t.insert(i);
         }
+        TreeStats ts = new TreeStats();
+        ts.addTrial(t.height(), t.getBranchingNumbers());
     }
 
     public static void report(TreeStats ts) {
@@ -58,21 +62,47 @@ public class BSTMain {
         public void addTrail(int height, int[] branching) {
             // multiply by trials to get the totals
             averageHeight *= trials;
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < averageBranching.length; i++) {
                 averageBranching[i] *= trials;
             }
 
             // Add the passed trial to our totals
             averageHeight += height;
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < averageBranching.length; i++) {
                 averageBranching[i] += branching[i];
             }
 
             // And normalize everything by the new number of trials
             trials++;
             averageHeight /= trials;
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < averageBranching.length; i++) {
                 averageBranching[i] /= trials;
+            }
+        }
+
+        public void clear() {
+            averageHeight = trials = 0;
+            for (int i = 0; i < averageBranching.length; i++) {
+                averageBranching[i] = 0;
+            }
+        }
+
+        public void add(TreeStats other) {
+            this.averageHeight *= this.trials;
+            for (int i = 0; i < this.averageBranching.length; i++) {
+                this.averageBranching[i] *= this.trials;
+            }
+
+            this.averageHeight += other.averageHeight * other.trials;
+            for (int i = 0; i < this.averageBranching.length; i++) {
+                this.averageBranching[i] += other.averageBranching[i] * other.trials;
+            }
+
+            this.trials += other.trials;
+
+            this.averageHeight /= this.trials;
+            for (int i = 0; i < this.averageBranching.length; i++) {
+                this.averageBranching[i] /= this.trials;
             }
         }
     }
