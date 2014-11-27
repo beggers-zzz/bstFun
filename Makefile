@@ -11,6 +11,7 @@ CLASSES = \
 	AbstractBST.java \
 	BST.java \
 	Treap.java \
+    TreeStats.java \
 	BSTMain.java
 
 default: classes
