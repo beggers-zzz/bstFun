@@ -9,17 +9,17 @@ import java.util.Random;
 
 public class BSTMain {
 
-    public static final int ELEMS = 1000;
-    public static final int NUM_TESTS = 100;
+    public static final int ELEMS = 1024;
+    public static final int NUM_TESTS = 1024;
     public static Random rand = new Random();
 
     public static void main(String[] args) {
         BST<Integer> bst = new BST<Integer>();
         TreeStats bstStats = new TreeStats();
 
-        System.out.println("-----------------------------------");
-        System.out.println("Running with " + ELEMS + " inserts.");
-        System.out.println("-----------------------------------");
+        System.out.println("-------------------------------------------------------------");
+        System.out.println("Running with " + NUM_TESTS + " trials of " + ELEMS + " inserts each.");
+        System.out.println("-------------------------------------------------------------");
         System.out.println();
 
         for (int i = 0; i < NUM_TESTS; i++) {
@@ -35,7 +35,7 @@ public class BSTMain {
         }
         System.out.println("BST with random insert:");
         report(bstStats);
-/*
+
         bstStats.clear();
         bst.clear();
         for (int i = 0; i < NUM_TESTS; i++) {
@@ -43,7 +43,6 @@ public class BSTMain {
         }
         System.out.println("BST with perfectly-ordered insert");
         report(bstStats);
-  */
     }
 
     public static TreeStats sortedInsert(AbstractBST<Integer> t) {
@@ -68,7 +67,19 @@ public class BSTMain {
 
     public static TreeStats perfectInsert(AbstractBST<Integer> t) {
         t.clear();
-        return new TreeStats();
+        perfectInsert(t, 0, ELEMS);
+        TreeStats ts = new TreeStats();
+        ts.addTrial(t.height(), t.getBranchingNumbers());
+        return ts;
+    }
+
+    public static void perfectInsert(AbstractBST<Integer> t, int lo, int hi) {
+        if (lo <= hi) {
+            int mid = (lo + hi) / 2;
+            t.insert(mid);
+            perfectInsert(t, lo, mid - 1);
+            perfectInsert(t, mid + 1, hi);
+        }
     }
 
     public static void report(TreeStats ts) {
