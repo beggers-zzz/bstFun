@@ -86,7 +86,7 @@ public abstract class AbstractBST<T extends Comparable<T>> {
         if (r != null) {
             if (r.left == null && r.right == null) {
                 nums[0]++;
-            } else if (r.left != null || r.right != null) {
+            } else if (r.left == null || r.right == null) {
                 nums[1]++;
             } else {
                 nums[2]++;
