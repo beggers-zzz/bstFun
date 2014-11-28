@@ -67,6 +67,7 @@ public abstract class AbstractBST<T extends Comparable<T>> {
      */
     public void clear() {
         root = null;
+        size = 0;
     }
 
     /*
