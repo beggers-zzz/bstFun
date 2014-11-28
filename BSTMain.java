@@ -9,7 +9,7 @@ import java.util.*;
 
 public class BSTMain {
 
-    public static final int ELEMS = 1024;
+    public static final int ELEMS = 1023;
     public static final int NUM_TESTS = 1024;
     public static Random rand = new Random();
 
@@ -88,7 +88,7 @@ public class BSTMain {
 
     public static TreeStats perfectInsert(AbstractBST<Integer> t) {
         t.clear();
-        perfectInsert(t, 0, ELEMS - 2);
+        perfectInsert(t, 0, ELEMS);
         TreeStats ts = new TreeStats();
         ts.addTrial(t.height(), t.getBranchingNumbers());
         return ts;
@@ -105,8 +105,9 @@ public class BSTMain {
 
     public static void report(TreeStats ts) {
         System.out.println("\tAverage height: " + ts.averageHeight);
-//        System.out.println("Percentage of ideal height: "
-//                         + (Math.abs(Math.log(2, ELMS) - ts.averageHeight) / Math.log(2, ELEMS)) * 100);
+        int idealHeight = (int) Math.floor(Math.log(ELEMS) / Math.log(2));
+        double error = 1.0 * ts.averageHeight / idealHeight;
+        System.out.println("\tPercentage of ideal height (" + idealHeight + "): " + error * 100);
 
         System.out.println("\tAverage branching factors:");
         System.out.println("\t\t0: " + ts.averageBranching[0]);
