@@ -88,12 +88,14 @@ public class BSTMain {
 
     public static TreeStats perfectInsert(AbstractBST<Integer> t) {
         t.clear();
-        perfectInsert(t, 0, ELEMS);
+        perfectInsert(t, 0, ELEMS - 1);
         TreeStats ts = new TreeStats();
         ts.addTrial(t.height(), t.getBranchingNumbers());
         return ts;
     }
 
+    // Adds, in perfect BST order, numbers from lo to hi (inclusive-inclusive)
+    // to the tree
     public static void perfectInsert(AbstractBST<Integer> t, int lo, int hi) {
         if (lo <= hi) {
             int mid = (lo + hi) / 2;
