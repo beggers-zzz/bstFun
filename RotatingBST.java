@@ -4,7 +4,18 @@
  * Don't call any of these methods on leaf nodes--things will break.
  */
 
+import java.util.Collection;
+
 public abstract class RotatingBST<T extends Comparable<T>> extends AbstractBST<T> {
+
+    public RotatingBST() {
+        // do nothing
+    }
+
+    public RotatingBST(Collection<T> init) {
+        super(init);
+    }
+
     public TreeNode rotRightRight(TreeNode root) {
         TreeNode newRoot = root.right;
         TreeNode rl = newRoot.left;
