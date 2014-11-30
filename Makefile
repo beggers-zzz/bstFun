@@ -10,6 +10,7 @@ JFLAGS = -g
 CLASSES = \
 	AbstractBST.java \
 	BST.java \
+    RotatingBST.java \
 	Treap.java \
     TreeStats.java \
 	BSTMain.java
