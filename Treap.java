@@ -5,7 +5,7 @@
 
 import java.util.*;
 
-public class Treap<T extends Comparable<T>> extends AbstractBST<T> {
+public class Treap<T extends Comparable<T>> extends RotatingBST<T> {
     protected Random rand;
 
     public Treap() {
