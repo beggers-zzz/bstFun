@@ -14,7 +14,8 @@ public abstract class RotatingBST<T extends Comparable<T>> extends AbstractBST<T
     }
 
     public TreeNode rotRightLeft(TreeNode root) {
-        return null;
+        root.right = rotLeftLeft(root.right);
+        return rotRightRight(root);
     }
 
     public TreeNode rotLeftLeft(TreeNode root) {
@@ -26,6 +27,7 @@ public abstract class RotatingBST<T extends Comparable<T>> extends AbstractBST<T
     }
 
     public TreeNode rotLeftRight(TreeNode root) {
-        return null;
+        root.left = rotRightRight(root.left);
+        return rotLeftLeft(root);
     }
 }
